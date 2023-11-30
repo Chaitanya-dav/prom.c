@@ -3,53 +3,18 @@
 #include<windows.h>
 #include<ctype.h>
 #include<stdlib.h>
-#include<time.h>
 #include<dos.h>
-
-void displayscore()
- {
- char name[20];
- float s;
- FILE *f;
- system("cls");
- f=fopen("score.txt","r");
- fscanf(f,"%s%f",&name,&s);
- printf("\n\n\t\t ");
- printf("\n\n\t\t %s has secured the Highest Score %.2f",name,s);
- printf("\n\n\t\t ");
- fclose(f);
- getch();
- }
-
-
 
 void help()
  {
  system("cls");
  printf("\n\n\n\tThis game is very easy to play. You'll be asked some general");
  printf("\n\n\tknowledge questions and the right answer is to be chosen among");
- printf("\n\n\tthe four options provided. Your score will be calculated at the");
- printf("\n\n\tend. Remember that the more quicker you give answer the more");
- printf("\n\n\tscore you will secure. Your score will be calculated and displayed");
- printf("\n\n\tat the end and displayed. If you secure highest score, your score");
- printf("\n\n\twill be recorded. So BEST OF LUCK.");
+ printf("\n\n\tthe four options provided.");
+ printf("\n\n\tRemember that the more quicker you give answer the more");
+ printf("\n\n\tSo BEST OF LUCK.");
  }
-void writescore(float score, char plnm[20])
- {
- float sc;
- char nm[20];
- FILE *f;
- system("cls");
- f=fopen("score.txt","r");
- fscanf(f,"%s%f",&nm,&sc);
- if (score>=sc)
-   { sc=score;
-     fclose(f);
-     f=fopen("score.txt","w");
-     fprintf(f,"%s\n%.2f",plnm,sc);
-     fclose(f);
-   }
- }
+
 int main()
      {
      int countq,countr;
@@ -58,7 +23,6 @@ int main()
      float score;
      char choice;
      char playername[20];
-     time_t initialtime,finaltime;
      system("cls");
      //randomize();
      mainhome:
@@ -66,17 +30,12 @@ int main()
      puts("\n\t\t WELCOME TO TRIVIA TEST PROGRAM\n\n") ;
      puts("\n\t\t-------------------------------");
      puts("\n\t\t Enter 'S' to start game       ");
-     puts("\n\t\t Enter 'V' to view high score  ");
      puts("\n\t\t Enter 'H' for help            ");
      puts("\n\t\t Enter 'Q' to quit             ");
      printf("\n\t\t-------------------------------\n\n\t\t  ");
      choice=toupper(getch());
-     if (choice=='V')
- {
- displayscore();
- goto mainhome;
- }
-     else if (choice=='Q')
+
+      if (choice=='Q')
  exit(1);
      else if (choice=='H')
  {
@@ -93,11 +52,9 @@ int main()
 
      home:
      system("cls");
-     initialtime=time(NULL);
      countq=countr=0;
      i=1;
      start:
-     srand ( time(NULL) );
      r=rand()%23+1;
      nq[i]=r;
      for (w=0;w<i;w++)
@@ -106,23 +63,22 @@ int main()
      switch(r)
   {
   case 1:
-  printf("\n\nWhat is the maximum no. of asymptotes of the curve x^4+2x+6=0?");
-  printf("\n\nA.4\tB.3\n\nC.none\tD.infinite\n\n");
+  printf("\n\nWhat is/are the roots of the curve x^2+2x+1=0?");
+  printf("\n\nA.1\tB.0\n\nC.none\tD.both A & B\n\n");
   countq++;
   if (toupper(getch())=='A')
    {printf("\n\nCorrect!!!");countr++; break;}
   else
-         {printf("\n\nWrong!!! The correct answer is A.4");break;}
+         {printf("\n\nWrong!!! The correct answer is A.1");break;}
 
   case 2:
-  printf("\n\n\nHow many points are possible in a compound pendulum about which");
-  printf("time period is same?");
-  printf("\n\nA.4\tB.2\n\nC.none\tD.infinite\n\n");
+  printf("\n\n\nWhich animated film features a character named Simba?");
+  printf("\n\nA.Jungle Book\tB.The Lion King\n\nC.Arabian Nights\tD.None\n\n");
   countq++;
-  if (toupper(getch())=='A')
+  if (toupper(getch())=='B')
    {printf("\n\nCorrect!!!");countr++; break;}
   else
-         printf("\n\nWrong!!! The correct answer is A.4");
+         printf("\n\nWrong!!! The correct answer is B.The Lion King");
   break;
 
   case 3:
@@ -175,7 +131,7 @@ int main()
 
 
   case 8:
-  printf("\n\n\nWhere is Bopinder Jogi?");
+  printf("\n\n\nWhere does Bopinder Jogi belong to?");
   printf("\n\nA.India\tB.Australia\n\nC.America\tD.London\n\n");
   countq++;
   if (toupper(getch())=='A')
@@ -205,13 +161,13 @@ int main()
 
 
   case 11:
-  printf("\n\n\nWho was the only player to score 6 successive sixes in an over?");
-  printf("\n\nA.Adam Gilchrist\tB.M.S.Dhoni\n\nC.Herschel Gibbs\tD.Sanath Jayasurya\n\n");
+  printf("\n\n\nWho is IShowSpeed?");
+  printf("\n\nA.Streamer\tB.Youtuber\n\nC.Influencer\tD.All of the Above\n\n");
   countq++;
-  if (toupper(getch())=='C')
+  if (toupper(getch())=='D')
    {printf("\n\nCorrect!!!");countr++; break;}
   else
-         {printf("\n\nWrong!!! The correct answer is C.Herschel Gibbs");break;}
+         {printf("\n\nWrong!!! The correct answer is D.All of the Above");break;}
 
   case 12:
   printf("\n\n\nWho was the player that broke sachin's record of most centuries");
@@ -223,13 +179,13 @@ int main()
          {printf("\n\nWrong!!! The correct answer is B.Lasith Malinga");break;}
 
   case 13:
-  printf("\n\n\nWhich country is hosting the Fifa World Cup 2010?");
-  printf("\n\nA.South Africa\tB.Italy\n\nC.Argentina\tD.Spain\n\n");
+  printf("\n\n\nWhich contry was World cup 2023 held ?");
+  printf("\n\nA.South Africa\tB.Italy\n\nC.Argentina\tD.India\n\n");
   countq++;
-  if (toupper(getch())=='A')
+  if (toupper(getch())=='D')
    {printf("\n\nCorrect!!!");countr++; break;}
   else
-         {printf("\n\nWrong!!! The correct answer is A.South Africa");break;}
+         {printf("\n\nWrong!!! The correct answer is D.India");break;}
 
   case 14:
   printf("\n\n\nWho is the author of 'Pulpasa Cafe'?");
@@ -327,28 +283,14 @@ int main()
   }
  i++;
  if (i<=5) goto start;
- finaltime=time(NULL);
- score=(float)countr/countq*100-difftime(finaltime,initialtime)/3;
- if (score<0) score=0;
- printf("\n\n\nYour Score: %.2f",score);
- if (score==100) printf("\n\nEXCELLENT!!! KEEP IT UP");
- else if (score>=80 && score<100) printf("\n\nVERY GOOD!!");
- else if (score>=60 &&score<80) printf("\n\nGOOD! BUT YOU NEED TO KNOW MORE.");
- else if (score>=40 && score<60) printf("\n\nSATISFACTORY RESULT, BUT THIS MUCH IS MUCH SUFFICIENT.");
- else printf("\n\nYOU ARE VERY POOR IN G.K.,WORK HARD");
  puts("\n\nNEXT PLAY?(Y/N)");
  if (toupper(getch())=='Y')
   goto home;
- else
-  {
-  writescore(score,playername);
-  goto mainhome;
-  }
  }
      else
  {
  printf("\n\n\t\t  Enter the right key\n\n\t\t  ");
- Sleep(700);
+ 
  goto mainhome;
  }
  return 0;
