@@ -20,7 +20,6 @@ int main()
      int countq,countr;
      int r,i;
      int pa;int nq[6];int w;
-     float score;
      char choice;
      char playername[20];
      system("cls");
@@ -64,7 +63,7 @@ int main()
   {
   case 1:
   printf("\n\nWhat is/are the roots of the curve x^2+2x+1=0?");
-  printf("\n\nA.1\tB.0\n\nC.none\tD.both A & B\n\n");
+  printf("\n\nA.-1\tB.0\n\nC.none\tD.both A & B\n\n");
   countq++;
   if (toupper(getch())=='A')
    {printf("\n\nCorrect!!!");countr++; break;}
