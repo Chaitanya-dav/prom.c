@@ -17,7 +17,6 @@ void help()
 
 int main()
      {
-     int countq,countr;
      int r,i;
      int pa;int nq[6];int w;
      char choice;
