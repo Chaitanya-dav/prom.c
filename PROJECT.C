@@ -61,11 +61,11 @@ int main()
   {
   case 1:
   printf("\n\nWhat is/are the roots of the curve x^2+2x+1=0?");
-  printf("\n\nA.1\tB.0\n\nC.none\tD.both A & B\n\n");
+  printf("\n\nA.-1\tB.0\n\nC.none\tD.both A & B\n\n");
   if (toupper(getch())=='A')
    {printf("\n\nCorrect!!!"); break;}
   else
-         {printf("\n\nWrong!!! The correct answer is A.1");break;}
+         {printf("\n\nWrong!!! The correct answer is A.-1");break;}
 
   case 2:
   printf("\n\n\nWhich animated film features a character named Simba?");
