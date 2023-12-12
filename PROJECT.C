@@ -17,6 +17,7 @@ void help()
 
 int main()
      {
+     int countq,countr;
      int r,i;
      int pa;int nq[6];int w;
      char choice;
@@ -52,7 +53,7 @@ int main()
      system("cls");
      i=1;
      start:
-     r=rand()%23+1;
+     r=rand()%15+1;
      nq[i]=r;
      for (w=0;w<i;w++)
  if (nq[w]==r) goto start;
@@ -61,11 +62,11 @@ int main()
   {
   case 1:
   printf("\n\nWhat is/are the roots of the curve x^2+2x+1=0?");
-  printf("\n\nA.-1\tB.0\n\nC.none\tD.both A & B\n\n");
+  printf("\n\nA.1\tB.0\n\nC.none\tD.both A & B\n\n");
   if (toupper(getch())=='A')
    {printf("\n\nCorrect!!!"); break;}
   else
-         {printf("\n\nWrong!!! The correct answer is A.-1");break;}
+         {printf("\n\nWrong!!! The correct answer is A.1");break;}
 
   case 2:
   printf("\n\n\nWhich animated film features a character named Simba?");
@@ -157,11 +158,11 @@ int main()
 
   case 12:
   printf("\n\n\nWho was the player that broke sachin's record of most centuries");
-  printf("\n\nA.Malinga Bandara\tB.Lasith Malinga\n\nC.Bret Lee\tD.Murali Daran\n\n");
+  printf("\n\nA.Malinga Bandara\tB.Virat Kholi\n\nC.Bret Lee\tD.Murali Daran\n\n");
   if (toupper(getch())=='B')
    {printf("\n\nCorrect!!!"); break;}
   else
-         {printf("\n\nWrong!!! The correct answer is B.Lasith Malinga");break;}
+         {printf("\n\nWrong!!! The correct answer is B. Virat Kholi");break;}
 
   case 13:
   printf("\n\n\nWhich contry was World cup 2023 held ?");
@@ -186,74 +187,6 @@ int main()
    {printf("\n\nCorrect!!!"); break;}
   else
          {printf("\n\nWrong!!! The correct answer is A.Russia");break;}
-
-  case 16:
-  printf("\n\n\nWho was awarded the youngest player award in Fifa World Cup 2006?");
-  printf("\n\nA.Wayne Rooney\tB.Lucas Podolski\n\nC.Lionel Messi\tD.Christiano Ronaldo\n\n");
-  if (toupper(getch())=='B')
-   {printf("\n\nCorrect!!!"); break;}
-  else
-         {printf("\n\nWrong!!! The correct answer is B.Lucas Podolski");break;}
-
-
-  case 17:
-  printf("\n\n\nWhat is the smallest district of Nepal?");
-  printf("\n\nA.Lalitpur\tB.Karnali\n\nC.Bhaktapur\tD.Gulmi\n\n");
-  if (toupper(getch())=='C')
-   {printf("\n\nCorrect!!!"); break;}
-  else
-         {printf("\n\nWrong!!! The correct answer is C.Bhaktapur");break;}
-
-  case 18:
-  printf("\n\n\nWhat is the headquarter of Western Development Region?");
-  printf("\n\nA.Dhankuta\tB.Kathmandu\n\nC.Dhangadhi\tD.Pokhara\n\n");
-  if (toupper(getch())=='D')
-   {printf("\n\nCorrect!!!"); break;}
-  else
-         {printf("\n\nWrong!!! The correct answer is D.Pokhara");break;}
-
-  case 19:
-  printf("\n\n\nWhich place is called 'The Cherrapunji of Nepal'?");
-  printf("\n\nA.Dharan\tB.Kathmandu\n\nC.Pokhara\tD.Butwal\n\n");
-  if (toupper(getch())=='C')
-   {printf("\n\nCorrect!!!"); break;}
-  else
-         {printf("\n\nWrong!!! The correct answer is C.Pokhara");break;}
-
-  case 20:
-  printf("\n\n\nWhich city is known at 'The City of Seven Hills'?");
-  printf("\n\nA.Rome\tB.Vactican City\n\nC.Madrid\tD.Berlin\n\n");
-  if (toupper(getch())=='A')
-   {printf("\n\nCorrect!!!"); break;}
-  else
-         {printf("\n\nWrong!!! The correct answer is A.Rome");break;}
-
-  case 21:
-  printf("\n\n\nWho was the F1 racing champion of 2006?");
-  printf("\n\nA.Louis Hamilton\tB.Felipe Massa\n\nC.Fernando Alonso\tD.Michael Schumaker\n\n");
-  if (toupper(getch())=='C')
-   {printf("\n\nCorrect!!!"); break;}
-  else
-         {printf("\n\nWrong!!! The correct answer is C.Fernanda Alonso");break;}
-
-  case 22:
-  printf("\n\n\nWho won the Women Australian Open 2007?");
-  printf("\n\nA.Martina Hingis\tB.Maria Sarapova\n\nC.Kim Clijster\tD.Serena Williams\n\n");
-  if (toupper(getch())=='D')
-   {printf("\n\nCorrect!!!"); break;}
-  else
-         {printf("\n\nWrong!!! The correct answer is D.Serena Williams");break;}
-
-  case 23:
-  printf("\n\n\nName the country where there no mosquito is found?");
-  printf("\n\nA.Germany\tB.Spain\n\nC.Japan\tD.France\n\n");
-  if (toupper(getch())=='D')
-   {printf("\n\nCorrect!!!"); break;}
-  else
-         {printf("\n\nWrong!!! The correct answer is D.France");break;}
-
-
-
   }
  i++;
  if (i<=5) goto start;
