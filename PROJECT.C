@@ -3,7 +3,6 @@
 #include<windows.h>
 #include<ctype.h>
 #include<stdlib.h>
-#include<dos.h>
 
 void help()
  {
@@ -17,7 +16,6 @@ void help()
 
 int main()
      {
-     int countq,countr;
      int r,i;
      int pa;int nq[6];int w;
      char choice;
