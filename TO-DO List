@@ -35,7 +35,10 @@ lb = Listbox(
 )
 lb.pack(side=LEFT, fill=BOTH)
 
-task_list = []
+task_list = ["Get Grocery",
+              "study",
+              "Binge watching",
+              "Assignments"]
 
 for item in task_list:
     lb.insert(END, item)
