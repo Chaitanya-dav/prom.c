@@ -1,0 +1,49 @@
+# this is my project
+
+def check_Balance(balance):
+    print("\nYour current balance is :",balance,"/-")
+    
+
+def withdraw(balance):
+    amount = int(input("\nEnter the amount for withdrawl : ")) 
+  
+    if((balance < amount) or (amount < 0 )):
+        print("\nEnter valid amount (balance insufficient) !!")
+    else:    
+        print("\nAmount withdrawn :", amount,"/-")
+        return amount    
+        
+
+def Deposit():
+    amount = int(input("\nEnter the amount to be deposited : "))
+    if(amount < 0 ): 
+        print("\nEnter valid amount!!")
+    else:
+        print("\nAmount Deposited :",amount,"/-")
+        return amount
+
+balance = 0
+is_running = True
+while is_running:
+    print("\n******************************************************************")
+    print("\t\t\tBANK MANAGEMENT\t\t\t")
+    print("******************************************************************")
+    print("1 : Check Balance \n")
+    print("2 : Deposit \n")
+    print("3 : Withdraw \n")
+    print("4 : Exit \n")
+    k = input("Enter the Key (1-4) : ")
+    
+    if (k=="1"):
+        check_Balance(balance)
+        
+    elif (k == "2"):
+        balance += Deposit()
+    
+    elif (k == "3"):
+        balance -= withdraw(balance)
+       
+     
+    elif(k == "4"):
+        print("Thank you for visiting !!")
+        is_running = False 
