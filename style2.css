@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #e0e0e0;
+    background-color: #e2a4a4;
     margin: 0;
     padding: 0;
     display: flex;
@@ -10,11 +10,11 @@ body {
   }
   
   .container {
-    background-color: #ffffff;
+    background-color: #c6e3f3;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 400px;
+    box-shadow: 0 0 10px rgba(103, 85, 85, 0.943);
+    width: 600px;
     text-align: center;
   }
   
@@ -27,7 +27,8 @@ body {
   }
   
   .input-section {
-    margin-bottom: 15px;
+    margin: 15px;
+    width: 10;
   }
   
   label {
