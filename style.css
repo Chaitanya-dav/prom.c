@@ -7,7 +7,6 @@ body, h1, h2, form, ul, ol, table, th, td, button {
 
 /* Body Styling */
 body {
-  background-image: url("1610247948543-28d438fd094b.avif");
   font-family: Arial, sans-serif;
   color: #333;
   line-height: 1.6;
@@ -37,14 +36,17 @@ form {
 }
 
 label {
-  display: block;
+  align-items: center;
+  display: flex;
   font-size: 1rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
   color: #666;
 }
 
 input[type="text"] {
-  width: 100%;
+  display: block;
+  margin: 0 auto;
+  width: 50%;
   padding: 0.8rem;
   border: 1px solid #ddd;
   border-radius: 4px;
@@ -53,6 +55,7 @@ input[type="text"] {
 }
 
 input[type="submit"] {
+  align-items: center;
   background-color: #007bff;
   color: #fff;
   border: none;

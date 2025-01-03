@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bank Management</title>
+  <link rel="stylesheet" href="style2.css">
+</head>
+<body>
+  <div class="container">
+    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-bank" viewBox="0 0 16 16">
+        <path d="m8 0 6.61 3h.89a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5H15v7a.5.5 0 0 1 .485.38l.5 2a.498.498 0 0 1-.485.62H.5a.498.498 0 0 1-.485-.62l.5-2A.5.5 0 0 1 1 13V6H.5a.5.5 0 0 1-.5-.5v-2A.5.5 0 0 1 .5 3h.89zM3.777 3h8.447L8 1zM2 6v7h1V6zm2 0v7h2.5V6zm3.5 0v7h1V6zm2 0v7H12V6zM13 6v7h1V6zm2-1V4H1v1zm-.39 9H1.39l-.25 1h13.72z"/>
+      </svg>
+    <h1>Bank Management</h1>
+    <div class="balance-section">
+      <p id="balance">Your current balance is: ₹0</p>
+    </div>
+    <div class="input-section">
+      <label for="deposit">Enter the amount to be deposited:</label>
+      <input type="number" id="deposit" placeholder="Deposit Amount">
+      <button id="btn-deposit">Deposit</button>
+    </div>
+    <div class="input-section">
+      <label for="withdraw">Enter the amount for withdrawal:</label>
+      <input type="number" id="withdraw" placeholder="Withdrawal Amount">
+      <button id="btn-withdraw">Withdraw</button>
+    </div>
+    <div class="actions">
+      <button id="btn-check-balance">Check Balance</button>
+      <button id="btn-view-transactions">View Transactions</button>
+      <button id="btn-exit">Exit</button>
+    </div>
+  </div>
+
+  <!-- Transaction History Modal -->
+  <div id="transaction-modal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-currency-rupee" viewBox="0 0 16 16">
+        <path d="M4 3.06h2.726c1.22 0 2.12.575 2.325 1.724H4v1.051h5.051C8.855 7.001 8 7.558 6.788 7.558H4v1.317L8.437 14h2.11L6.095 8.884h.855c2.316-.018 3.465-1.476 3.688-3.049H12V4.784h-1.345c-.08-.778-.357-1.335-.793-1.732H12V2H4z"/>
+      </svg>
+      <h2>Transaction History</h2>
+      <ul id="transaction-list"></ul>
+      <button id="btn-delete-transaction">Delete Selected</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

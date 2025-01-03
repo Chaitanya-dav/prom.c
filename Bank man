@@ -1,30 +1,107 @@
 import tkinter as tk
 from tkinter import ttk
+from tkinter import messagebox
+import json
+import uuid
 
-def check_balance(balance):
-    balance_label.config(text="Your current balance is: ₹" + str(balance))
+def load_data():
+    try:
+        with open("account_data.json", "r") as f:
+            data = json.load(f)
+            return data
+    except FileNotFoundError:
+        return {"balance": 0, "transactions": []}
+
+def save_data(data):
+    with open("account_data.json", "w") as f:
+        json.dump(data, f)
+
+def check_balance(balance_label, balance):
+    balance_label.config(text="Your current balance is: ₹" + str(balance[0]))
 
 def withdraw(balance):
-    amount = int(entry_withdraw.get())
+    amount_str = entry_withdraw.get()
+    if not amount_str:
+        tk.messagebox.showinfo("Invalid Input", "Please enter a withdrawal amount.")
+        return
 
-    if amount <= 0 or amount > balance:
-        tk.messagebox.showinfo("Invalid Amount", "Please enter a valid amount (balance insufficient).")
-        return 0
+    try:
+        amount = int(amount_str)
+    except ValueError:
+        tk.messagebox.showinfo("Invalid Input", "Please enter a valid numeric amount.")
+        return
+
+    if amount <= 0 or amount > balance[0]:
+        tk.messagebox.showinfo("Invalid Amount", "Insufficient balance.")
+        return
     else:
-        balance -= amount
-        check_balance(balance)
-        return amount
+        balance[0] -= amount
+        check_balance(label_balance, balance)
+        transaction_id = str(uuid.uuid4())  # Generate a unique ID
+        data["transactions"].append({
+            "id": transaction_id,
+            "type": "withdrawal",
+            "amount": amount
+        })
+        save_data(data)
 
-def deposit():
-    amount = int(entry_deposit.get())
+def deposit(balance):
+    amount_str = entry_deposit.get()
+    if not amount_str:
+        tk.messagebox.showinfo("Invalid Input", "Please enter a deposit amount.")
+        return
+
+    try:
+        amount = int(amount_str)
+    except ValueError:
+        tk.messagebox.showinfo("Invalid Input", "Please enter a valid numeric amount.")
+        return
 
     if amount <= 0:
         tk.messagebox.showinfo("Invalid Amount", "Please enter a valid amount.")
-        return 0
+        return
     else:
-        balance += amount
-        check_balance(balance)
-        return amount
+        balance[0] += amount
+        check_balance(label_balance, balance)
+        transaction_id = str(uuid.uuid4())  # Generate a unique ID
+        data["transactions"].append({
+            "id": transaction_id,
+            "type": "deposit",
+            "amount": amount
+        })
+        save_data(data)
+
+def view_transactions():
+    def delete_transaction():
+        selected = transaction_list.curselection()
+        if not selected:
+            tk.messagebox.showinfo("No Selection", "Please select a transaction to delete.")
+            return
+        
+        selected_index = selected[0]
+        transaction_id = transaction_list.get(selected_index).split(" - ")[0]  # Extract the ID from the selected item
+        
+        global data
+        data["transactions"] = [t for t in data["transactions"] if t["id"] != transaction_id]
+        save_data(data)
+        transaction_list.delete(selected_index)
+    
+    transaction_window = tk.Toplevel(root)
+    transaction_window.title("Transaction History")
+    transaction_window.geometry("500x400")
+    transaction_window.configure(bg="#f5f5f5")
+
+    frame_list = tk.Frame(transaction_window, bg="#f5f5f5")
+    frame_list.pack(pady=10, padx=10, fill=tk.BOTH, expand=True)
+
+    transaction_list = tk.Listbox(frame_list, height=15, bg="#ffffff", fg="#333333", font=("Arial", 12))
+    transaction_list.pack(fill=tk.BOTH, expand=True)
+
+    for transaction in data["transactions"]:
+        transaction_list.insert(tk.END, f"{transaction['id']} - {transaction['type']} - ₹{transaction['amount']}")
+
+    delete_button = ttk.Button(transaction_window, text="Delete Selected", style="TButton", command=delete_transaction)
+    delete_button.pack(pady=10)
 
 def exit_program():
     if tk.messagebox.askquestion("Exit", "Are you sure you want to exit?") == "yes":
@@ -33,39 +110,54 @@ def exit_program():
 # Create the main window
 root = tk.Tk()
 root.title("Bank Management")
-root.configure(bg="#f0f0f0")  # Set background color
+root.geometry("400x300")
+root.configure(bg="#e0e0e0")
 
 # Create style for the application
 style = ttk.Style()
-style.theme_use("clam")  # Choose a theme (e.g., "clam", "alt", "default")
-style.configure("TButton", padding=5, relief="flat", background="#4CAF50", foreground="white")  # Customize button style
+style.theme_use("clam")
+style.configure("TButton", padding=10, relief="flat", background="#007bff", foreground="white", font=("Arial", 10))
+style.configure("TLabel", background="#e0e0e0", font=("Arial", 12))
+style.configure("TEntry", padding=5, relief="flat", font=("Arial", 12))
+style.map("TButton", background=[("active", "#0056b3")])
+
+# Load initial data
+data = load_data()
+balance = [data.get("balance", 0)]
+
+# Create main frame
+main_frame = tk.Frame(root, bg="#e0e0e0", padx=10, pady=10)
+main_frame.pack(fill=tk.BOTH, expand=True)
 
 # Create labels and entry fields
-label_balance = ttk.Label(root, text="Your current balance is: ₹0", style="TLabel")
-label_deposit = ttk.Label(root, text="Enter the amount to be deposited:", style="TLabel")
-label_withdraw = ttk.Label(root, text="Enter the amount for withdrawal:", style="TLabel")
-entry_deposit = ttk.Entry(root, style="TEntry")
-entry_withdraw = ttk.Entry(root, style="TEntry")
+label_balance = ttk.Label(main_frame, text="Your current balance is: ₹" + str(balance[0]), style="TLabel")
+label_deposit = ttk.Label(main_frame, text="Enter the amount to be deposited:", style="TLabel")
+label_withdraw = ttk.Label(main_frame, text="Enter the amount for withdrawal:", style="TLabel")
+entry_deposit = ttk.Entry(main_frame, style="TEntry")
+entry_withdraw = ttk.Entry(main_frame, style="TEntry")
 
 # Create buttons
-button_check_balance = ttk.Button(root, text="Check Balance", style="TButton", command=lambda: check_balance(balance))
-button_deposit = ttk.Button(root, text="Deposit", style="TButton", command=lambda: deposit())
-button_withdraw = ttk.Button(root, text="Withdraw", style="TButton", command=lambda: withdraw(balance))
-button_exit = ttk.Button(root, text="Exit", style="TButton", command=exit_program)
+button_check_balance = ttk.Button(main_frame, text="Check Balance", style="TButton", command=lambda: check_balance(label_balance, balance))
+button_deposit = ttk.Button(main_frame, text="Deposit", style="TButton", command=lambda: deposit(balance))
+button_withdraw = ttk.Button(main_frame, text="Withdraw", style="TButton", command=lambda: withdraw(balance))
+button_exit = ttk.Button(main_frame, text="Exit", style="TButton", command=exit_program)
+button_view_transactions = ttk.Button(main_frame, text="View Transactions", style="TButton", command=view_transactions)
 
 # Grid layout
-label_balance.grid(row=0, column=0, columnspan=2)
-label_deposit.grid(row=1, column=0)
-entry_deposit.grid(row=1, column=1)
-button_deposit.grid(row=2, column=0, columnspan=2)
-label_withdraw.grid(row=3, column=0)
-entry_withdraw.grid(row=3, column=1)
-button_withdraw.grid(row=4, column=0, columnspan=2)
-button_check_balance.grid(row=5, column=0)
-button_exit.grid(row=5, column=1)
-
-# Initialize balance
-balance = 0
+label_balance.grid(row=0, column=0, columnspan=2, pady=10)
+label_deposit.grid(row=1, column=0, pady=5, sticky=tk.E)
+entry_deposit.grid(row=1, column=1, pady=5, sticky=tk.W)
+button_deposit.grid(row=2, column=0, columnspan=2, pady=10)
+label_withdraw.grid(row=3, column=0, pady=5, sticky=tk.E)
+entry_withdraw.grid(row=3, column=1, pady=5, sticky=tk.W)
+button_withdraw.grid(row=4, column=0, columnspan=2, pady=10)
+button_check_balance.grid(row=5, column=0, pady=10)
+button_exit.grid(row=5, column=1, pady=10)
+button_view_transactions.grid(row=6, column=0, columnspan=2, pady=10)
 
 # Start the main loop
 root.mainloop()
+
+
+
+
