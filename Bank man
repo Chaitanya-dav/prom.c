@@ -157,7 +157,10 @@ button_view_transactions.grid(row=6, column=0, columnspan=2, pady=10)
 
 # Start the main loop
 root.mainloop()
+<<<<<<< HEAD
 
 
 
 
+=======
+>>>>>>> 1140eedeb26eb9db11d147532f0fac4ed9fa2597

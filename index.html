@@ -1,63 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style2.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Input Example</title>
     <script src ="script.js"></script>
 </head>
 <body>
-    <h1>Input Form</h1>
+    <script src ="script.js"></script>
+    <div class ="container" >
+    <h1>Sign in</h1>
     <form onsubmit="validateAndRedirect(event)"   action="page2.html" method="GET">
         <label for="username">Username:</label>
         <input type="text" id="username" name="username" placeholder="Enter your username">
         <label for="name">Name:</label>
         <input type="text" id="name" name="name" placeholder="Enter your name">
         <input type="submit" value="Sign in">
-    </form>
-    <button id="myButton">Click Me</button>
 
-<!-- Page 1: index.html -->
-<button onclick="window.location.href='page2.html'">Go to Page2</button>
-
-<h2>List of things.</h2>
-
-<ul>
-   <li>stem</li>
-   <li>base ball</li>
-</ul>
-<h2>Oredred list</h2>
-<ol>
-   <li>first</li>
-   <li>second</li>
-   <li>third</li>
-   <li>forth</li>
-</ol>
-
-<h2>Table</h2>
-
-     <table  bgcolor="white" width="800">
-        <tr bgcolor="black" >
-          <th>insta </th>
-          <th bgcolor="red">reddit </th>
-          <th>you tube </th>
-          <th bgcolor="red"  >whatsapp</th>
-        </tr>
-        <tr bgcolor="black" align="center">
-            <td>reels</td>
-            <td>video</td>
-            <td>short</td>
-            <td>none</td>
-        </tr>    
-        <tr bgcolor="black" align="center" >
-            <td>stories</td>
-            <td>none</td>
-            <td>stories</td>
-            <td>status</td>
-        </tr>
-     </table>
-
+    <button id = "btn-exit">Click Me</button>
+    <button onclick="window.location.href='page2.html'">Go to Page2</button>
+</form>
+    </div>
 
 </body>
 </html>
